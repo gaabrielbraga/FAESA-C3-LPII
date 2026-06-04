@@ -43,13 +43,10 @@ O board está organizado com **4 colunas** e **10 épicos** cobrindo todo o esco
 
 ---
 
-## Time
-
-| Membro |
-|---|---|
-| Gabriel Ferreira Braga |
-| Luiz Eduardo Lima Alves | 
-| Saimon Dias Rosa Barbosa |
-| Yuri Buso Oliveira |
-| Leticia Stange Barbosa | 
-| Bruno Lopes |
+## Membros
+Gabriel Ferreira Braga
+Luiz Eduardo Lima Alves
+Saimon Dias Rosa Barbosa
+Yuri Buso Oliveira
+Leticia Stange Barbosa
+Bruno Lopes
