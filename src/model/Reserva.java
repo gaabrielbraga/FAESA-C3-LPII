@@ -22,45 +22,17 @@ public class Reserva {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public int getHospedeId() { return hospedeId; }
+    public int getQuartoNumero() { return quartoNumero; }
+    public int getFuncionarioId() { return funcionarioId; }
+    public LocalDate getCheckIn() { return checkIn; }
+    public LocalDate getCheckOut() { return checkOut; }
+    public String getStatus() { return status; }
 
-    public int getHospedeId() {
-        return hospedeId;
-    }
-
-    public int getQuartoNumero() {
-        return quartoNumero;
-    }
-
-    public int getFuncionarioId() {
-        return funcionarioId;
-    }
-
-    public LocalDate getCheckIn() {
-        return checkIn;
-    }
-
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void confirmar() {
-        this.status = "confirmada";
-    }
-
-    public void cancelar() {
-        this.status = "cancelada";
-    }
+    public void setStatus(String status) { this.status = status; }
+    public void confirmar() { this.status = "confirmada"; }
+    public void cancelar() { this.status = "cancelada"; }
 
     public String paraCsv() {
         return id + ";" + hospedeId + ";" + quartoNumero + ";" + funcionarioId + ";"
@@ -69,20 +41,31 @@ public class Reserva {
 
     public static Reserva deCsv(String linha) {
         String[] campos = linha.split(";");
-        int id = Integer.parseInt(campos[0]);
-        int hospedeId = Integer.parseInt(campos[1]);
-        int quartoNumero = Integer.parseInt(campos[2]);
-        int funcionarioId = Integer.parseInt(campos[3]);
-        LocalDate checkIn = LocalDate.parse(campos[4]);
-        LocalDate checkOut = LocalDate.parse(campos[5]);
-        String status = campos[6];
-        return new Reserva(id, hospedeId, quartoNumero, funcionarioId, checkIn, checkOut, status);
+        return new Reserva(
+            Integer.parseInt(campos[0]),
+            Integer.parseInt(campos[1]),
+            Integer.parseInt(campos[2]),
+            Integer.parseInt(campos[3]),
+            LocalDate.parse(campos[4]),
+            LocalDate.parse(campos[5]),
+            campos[6]
+        );
+    }
+
+    public String exibir(String nomeHospede, String nomeFuncionario) {
+        return "Id: " + id
+                + " | Hospede: " + nomeHospede
+                + " | Quarto: " + quartoNumero
+                + " | Funcionario: " + nomeFuncionario
+                + " | CheckIn: " + checkIn
+                + " | CheckOut: " + checkOut
+                + " | Status: " + status;
     }
 
     @Override
     public String toString() {
-        return "Id: " + id + " | Hospede: " + hospedeId + " | Quarto: " + quartoNumero
-                + " | Funcionario: " + funcionarioId + " | CheckIn: " + checkIn
+        return "Id: " + id + " | Hospede id: " + hospedeId + " | Quarto: " + quartoNumero
+                + " | Funcionario id: " + funcionarioId + " | CheckIn: " + checkIn
                 + " | CheckOut: " + checkOut + " | Status: " + status;
     }
 }

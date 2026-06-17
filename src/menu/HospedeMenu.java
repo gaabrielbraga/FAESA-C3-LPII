@@ -21,6 +21,13 @@ public class HospedeMenu {
 
         String cpf = lerCpf(scanner);
 
+        for (Hospede h : hospedes) {
+            if (h.getCpf().equals(cpf)) {
+                System.out.println("Erro: ja existe um hospede cadastrado com esse CPF (" + h.getNome() + ").");
+                return;
+            }
+        }
+
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
 
@@ -110,17 +117,13 @@ public class HospedeMenu {
     }
 
     private String lerCpf(Scanner scanner) {
-        String cpf;
         while (true) {
             System.out.print("CPF (somente numeros): ");
-            cpf = scanner.nextLine();
-
+            String cpf = scanner.nextLine();
             if (cpf.matches("\\d+")) {
-                break;
+                return cpf;
             }
-
             System.out.println("CPF invalido! Digite apenas numeros, sem pontos ou tracos.");
         }
-        return cpf;
     }
 }

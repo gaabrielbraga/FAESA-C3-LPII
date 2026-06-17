@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Hotel hotel = new Hotel("Pousada", "Rua Principal, 123");
+        Hotel hotel = new Hotel("Pousada");
 
         HospedeMenu hospedeMenu = new HospedeMenu();
         QuartoMenu quartoMenu = new QuartoMenu();
