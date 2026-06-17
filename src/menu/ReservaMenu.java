@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class ReservaMenu {
@@ -68,14 +67,9 @@ public class ReservaMenu {
             return;
         }
 
-        HashMap<Integer, String> nomesHospedes = carregarNomesHospedes();
-        HashMap<Integer, String> nomesFuncionarios = carregarNomesFuncionarios();
-
         System.out.println("\n--- Lista de Reservas ---");
         for (Reserva r : reservas) {
-            String nh = nomesHospedes.getOrDefault(r.getHospedeId(), "Hospede #" + r.getHospedeId());
-            String nf = nomesFuncionarios.getOrDefault(r.getFuncionarioId(), "Funcionario #" + r.getFuncionarioId());
-            System.out.println(r.toString(nh, nf));
+            System.out.println(r);
         }
     }
 
@@ -87,14 +81,9 @@ public class ReservaMenu {
             return;
         }
 
-        HashMap<Integer, String> nomesHospedes = carregarNomesHospedes();
-        HashMap<Integer, String> nomesFuncionarios = carregarNomesFuncionarios();
-
         System.out.println("\n--- Lista de Reservas ---");
         for (Reserva r : reservas) {
-            String nh = nomesHospedes.getOrDefault(r.getHospedeId(), "Hospede #" + r.getHospedeId());
-            String nf = nomesFuncionarios.getOrDefault(r.getFuncionarioId(), "Funcionario #" + r.getFuncionarioId());
-            System.out.println(r.toString(nh, nf));
+            System.out.println(r);
         }
 
         int id = Leitor.lerInteiro(scanner, "Digite o id da reserva a cancelar: ");
@@ -109,11 +98,6 @@ public class ReservaMenu {
 
         if (encontrada == null) {
             System.out.println("Reserva nao encontrada.");
-            return;
-        }
-
-        if (encontrada.getStatus().equalsIgnoreCase("finalizada") || encontrada.getStatus().equalsIgnoreCase("cancelada")) {
-            System.out.println("Nao e possivel cancelar uma reserva com status '" + encontrada.getStatus() + "'.");
             return;
         }
 
@@ -205,22 +189,6 @@ public class ReservaMenu {
 
         System.out.println("Numero informado nao esta na lista de disponiveis.");
         return null;
-    }
-
-    private HashMap<Integer, String> carregarNomesHospedes() {
-        HashMap<Integer, String> mapa = new HashMap<>();
-        for (Hospede h : HospedeRepositorio.carregar()) {
-            mapa.put(h.getId(), h.getNome());
-        }
-        return mapa;
-    }
-
-    private HashMap<Integer, String> carregarNomesFuncionarios() {
-        HashMap<Integer, String> mapa = new HashMap<>();
-        for (Funcionario f : FuncionarioRepositorio.carregar()) {
-            mapa.put(f.getId(), f.getNome());
-        }
-        return mapa;
     }
 
     private LocalDate lerData(Scanner scanner, String mensagem) {

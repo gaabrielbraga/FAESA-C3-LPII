@@ -79,20 +79,10 @@ public class Reserva {
         return new Reserva(id, hospedeId, quartoNumero, funcionarioId, checkIn, checkOut, status);
     }
 
-    public String toString(String nomeHospede, String nomeFuncionario) {
-        return "Id: " + id
-                + " | Hospede: " + nomeHospede
-                + " | Quarto: " + quartoNumero
-                + " | Funcionario: " + nomeFuncionario
-                + " | CheckIn: " + checkIn
-                + " | CheckOut: " + checkOut
-                + " | Status: " + status;
-    }
-
     @Override
     public String toString() {
-        return "Id: " + id + " | Hospede id: " + hospedeId + " | Quarto: " + quartoNumero
-                + " | Funcionario id: " + funcionarioId + " | CheckIn: " + checkIn
+        return "Id: " + id + " | Hospede: " + hospedeId + " | Quarto: " + quartoNumero
+                + " | Funcionario: " + funcionarioId + " | CheckIn: " + checkIn
                 + " | CheckOut: " + checkOut + " | Status: " + status;
     }
 }

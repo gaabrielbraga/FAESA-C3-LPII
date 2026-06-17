@@ -19,7 +19,8 @@ public class QuartoMenu {
             return;
         }
 
-        String tipo = escolherTipo(scanner);
+        System.out.print("Tipo (ex: solteiro, casal, suite): ");
+        String tipo = scanner.nextLine();
 
         double preco = Leitor.lerDouble(scanner, "Preco da diaria: ");
 
@@ -72,15 +73,15 @@ public class QuartoMenu {
             return;
         }
 
-        System.out.println("Tipo atual: " + encontrado.getTipo() + " (0 = manter)");
-        String tipo = escolherTipoOpcional(scanner);
+        System.out.print("Novo tipo (deixe em branco para manter \"" + encontrado.getTipo() + "\"): ");
+        String tipo = scanner.nextLine();
 
         double preco = Leitor.lerDouble(scanner, "Novo preco (digite 0 para manter " + encontrado.getPreco() + "): ");
 
         System.out.print("Novo status disponivel/ocupado (deixe em branco para manter \"" + encontrado.getStatus() + "\"): ");
         String status = scanner.nextLine();
 
-        String tipoFinal = tipo == null ? encontrado.getTipo() : tipo;
+        String tipoFinal = tipo.isBlank() ? encontrado.getTipo() : tipo;
         double precoFinal = preco == 0 ? encontrado.getPreco() : preco;
         String statusFinal = status.isBlank() ? encontrado.getStatus() : status;
 
@@ -122,46 +123,6 @@ public class QuartoMenu {
         quartos.remove(encontrado);
         QuartoRepositorio.salvar(quartos);
         System.out.println("Quarto excluido com sucesso!");
-    }
-
-    private String escolherTipo(Scanner scanner) {
-        System.out.println("Tipo do quarto:");
-        System.out.println("1 - Solteiro");
-        System.out.println("2 - Casal");
-        System.out.println("3 - Suite");
-        System.out.println("4 - Suite Master");
-        int opcao = Leitor.lerInteiro(scanner, "Escolha o tipo: ");
-        return switch (opcao) {
-            case 1 -> "Solteiro";
-            case 2 -> "Casal";
-            case 3 -> "Suite";
-            case 4 -> "Suite Master";
-            default -> {
-                System.out.println("Opcao invalida, usando Solteiro.");
-                yield "Solteiro";
-            }
-        };
-    }
-
-    private String escolherTipoOpcional(Scanner scanner) {
-        System.out.println("Tipo do quarto:");
-        System.out.println("0 - Manter atual");
-        System.out.println("1 - Solteiro");
-        System.out.println("2 - Casal");
-        System.out.println("3 - Suite");
-        System.out.println("4 - Suite Master");
-        int opcao = Leitor.lerInteiro(scanner, "Escolha o tipo: ");
-        return switch (opcao) {
-            case 0 -> null;
-            case 1 -> "Solteiro";
-            case 2 -> "Casal";
-            case 3 -> "Suite";
-            case 4 -> "Suite Master";
-            default -> {
-                System.out.println("Opcao invalida, mantendo atual.");
-                yield null;
-            }
-        };
     }
 
     public Quarto buscarPorNumero(int numero) {

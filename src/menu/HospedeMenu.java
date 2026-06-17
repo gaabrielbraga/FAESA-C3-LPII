@@ -21,13 +21,6 @@ public class HospedeMenu {
 
         String cpf = lerCpf(scanner);
 
-        for (Hospede h : hospedes) {
-            if (h.getCpf().equals(cpf)) {
-                System.out.println("Erro: ja existe um hospede cadastrado com esse CPF (" + h.getNome() + ").");
-                return;
-            }
-        }
-
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
 
